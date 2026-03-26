@@ -20,6 +20,14 @@ const FILE_MAP = [
   { id: 'contact.css', label: 'contact.css', icon: '#', iconClass: 'file-icon--css', language: 'CSS', component: ContactSection },
 ];
 
+const THEMES = [
+  { id: 'default', label: 'Dark', color: '#38bdf8', vars: { '--accent-purple': '#38bdf8', '--accent-blue': '#0ea5e9' } },
+  { id: 'dracula', label: 'Dracula Dark', color: '#bd93f9', vars: { '--accent-purple': '#bd93f9', '--accent-blue': '#ff79c6' } },
+  { id: 'matrix', label: 'Matrix Green', color: '#22c55e', vars: { '--accent-purple': '#22c55e', '--accent-blue': '#16a34a' } },
+  { id: 'sunset', label: 'Sunset Orange', color: '#f97316', vars: { '--accent-purple': '#f97316', '--accent-blue': '#f59e0b' } },
+  { id: 'crimson', label: 'Crimson Red', color: '#ef4444', vars: { '--accent-purple': '#ef4444', '--accent-blue': '#dc2626' } },
+];
+
 const MENU_ITEMS = [
   { label: 'File', fileId: 'home.tsx' },
   { label: 'View', fileId: 'projects.js' },
@@ -37,13 +45,22 @@ export default function Portfolio() {
   const [explorerOpen, setExplorerOpen] = useState(true);
   const [time, setTime] = useState('');
   const [openMenu, setOpenMenu] = useState(null);
+  const [activeThemeId, setActiveThemeId] = useState('default');
+  const [themeDropdownOpen, setThemeDropdownOpen] = useState(false);
+
+  const activeTheme = THEMES.find(t => t.id === activeThemeId) || THEMES[0];
 
   useEffect(() => {
-    setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+    const t = setTimeout(() => {
+      setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+    }, 0);
     const interval = setInterval(() => {
       setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    }, 10000);
-    return () => clearInterval(interval);
+    }, 60000);
+    return () => {
+      clearTimeout(t);
+      clearInterval(interval);
+    };
   }, []);
 
   const activeFileData = FILE_MAP.find(f => f.id === activeFile);
@@ -66,7 +83,7 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="vscode-layout">
+    <div className="vscode-layout" style={activeTheme.vars}>
       {/* ===== TITLE BAR ===== */}
       <div className="titlebar">
         <button
@@ -277,7 +294,54 @@ export default function Portfolio() {
         <div className="statusbar__right">
           <span className="statusbar__item">{activeFileData?.language || 'Plain Text'}</span>
           <span className="statusbar__item">UTF-8</span>
-          <span className="statusbar__item">Ayush Bharti Dark</span>
+          
+          <div className="statusbar__item" style={{ position: 'relative', cursor: 'pointer' }}>
+            <div 
+              style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
+              onClick={(e) => {
+                e.stopPropagation();
+                setThemeDropdownOpen(!themeDropdownOpen);
+              }}
+            >
+              <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: activeTheme.color }} />
+              {activeTheme.label}
+            </div>
+            
+            {themeDropdownOpen && (
+              <>
+                <div 
+                  style={{ position: 'fixed', inset: 0, zIndex: 999 }} 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setThemeDropdownOpen(false);
+                  }} 
+                />
+                <div className="titlebar__dropdown" style={{ 
+                  bottom: '100%', 
+                  top: 'auto', 
+                  right: 0, 
+                  left: 'auto', 
+                  marginBottom: '4px',
+                  zIndex: 1000 
+                }}>
+                  {THEMES.map(theme => (
+                    <div 
+                      key={theme.id} 
+                      className="titlebar__dropdown-item" 
+                      onClick={() => {
+                        setActiveThemeId(theme.id);
+                        setThemeDropdownOpen(false);
+                      }}
+                    >
+                      <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: theme.color, marginRight: '4px' }} />
+                      {theme.label}
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+
           <span className="statusbar__item" style={{ opacity: 0.6 }}>
             {time}
           </span>

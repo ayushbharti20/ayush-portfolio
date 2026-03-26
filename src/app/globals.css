@@ -524,7 +524,7 @@ button {
 .hero__name {
   font-size: 72px;
   font-weight: 900;
-  font-family: var(--font-display);
+  font-family: var(--font-mono);
   line-height: 1.1;
   letter-spacing: -2px;
   margin-bottom: 12px;

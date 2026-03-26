@@ -136,6 +136,7 @@ export default function AboutSection() {
 
         <div className="readme-activity-card">
           <h4>LeetCode Stats</h4>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
             src="https://leetcard.jacoblin.cool/ayushbharti20?theme=dark&font=Inter&ext=heatmap" 
             alt="LeetCode Stats" 
@@ -145,6 +146,7 @@ export default function AboutSection() {
         
         <div className="readme-activity-card">
           <h4>GitHub Stats</h4>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
             src="https://github-readme-stats.vercel.app/api?username=ayushbharti20&theme=dark&hide_border=true&include_all_commits=true&show_icons=true&bg_color=11111b" 
             alt="GitHub Stats" 
