@@ -564,15 +564,11 @@ button {
   position: relative;
   overflow: hidden;
   border: 4px solid var(--accent-purple);
-  /* Ultra-Premium VS Code blueprint tech aesthetic */
-  background-image: 
-    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px),
-    radial-gradient(circle at 20% 30%, color-mix(in srgb, var(--accent-blue) 45%, transparent) 0%, transparent 55%),
-    radial-gradient(circle at 80% 70%, color-mix(in srgb, var(--accent-purple) 45%, transparent) 0%, transparent 55%),
-    linear-gradient(135deg, var(--bg-hover) 0%, var(--bg-main) 100%);
-  background-size: 20px 20px, 20px 20px, 100% 100%, 100% 100%, 100% 100%;
-  background-position: center;
+  /* Theme-reactive gradient using color-mix! */
+  background: 
+    radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--accent-blue) 35%, transparent) 0%, transparent 60%),
+    radial-gradient(circle at 70% 80%, color-mix(in srgb, var(--accent-purple) 35%, transparent) 0%, transparent 60%),
+    var(--bg-hover);
   box-shadow: 0 0 0 6px rgba(255,255,255,0.03), 
               0 0 40px color-mix(in srgb, var(--accent-purple) 40%, transparent),
               inset 0 0 40px rgba(0,0,0,0.6);
