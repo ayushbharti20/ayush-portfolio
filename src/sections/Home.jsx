@@ -67,7 +67,7 @@ export default function HomeSection() {
         <div className="hero__photo-wrap">
           <div className="hero__photo-ring">
             <Image
-              src="/Ayush-2-no-background.png"
+              src="/Ayush-1-no-background.png"
               alt="Ayush Bharti"
               fill
               sizes="280px"
