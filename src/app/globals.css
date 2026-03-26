@@ -1855,9 +1855,13 @@ button {
   .titlebar__controls { display: none; }
   .titlebar__search-box { min-width: 140px; }
 
+  .hero__top { flex-direction: column; gap: 40px; }
+  .hero__photo-ring { width: 200px; height: 200px; }
+  .hero__left { text-align: center; display: flex; flex-direction: column; align-items: center; }
   .hero__name { font-size: 40px; }
-  .hero__roles { gap: 6px; }
-  .hero__buttons { flex-direction: column; }
+  .hero__roles { gap: 6px; justify-content: center; }
+  .hero__buttons { flex-direction: column; width: 100%; align-items: stretch; }
+  .hero__btn { justify-content: center; }
   .hero__stats { flex-direction: column; }
   .hero__stat { border-right: none; border-bottom: 1px solid var(--border); }
 
