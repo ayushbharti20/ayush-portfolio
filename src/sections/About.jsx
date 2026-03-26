@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 
 const GitHubCalendar = dynamic(
-  () => import('react-github-calendar').then((mod) => mod.GitHubCalendar),
+  () => import('react-github-calendar'),
   { ssr: false, loading: () => <p>Loading activity...</p> }
 );
 
