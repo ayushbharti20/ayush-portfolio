@@ -48,12 +48,6 @@ export default function HomeSection() {
             }}>
               ✉️ Contact
             </button>
-            <button className="hero__btn hero__btn--secondary" onClick={() => {
-              const el = document.querySelector('[data-file="certificates.yml"]');
-              if (el) el.click();
-            }}>
-              📜 Certificates
-            </button>
             <a
               href="/ayush_final_cv4.pdf"
               download="Ayush_Bharti_CV.pdf"
@@ -64,14 +58,15 @@ export default function HomeSection() {
           </div>
         </div>
 
+        {/* Right: profile photo */}
         <div className="hero__photo-wrap">
           <div className="hero__photo-ring">
             <Image
               src="/Ayush-1-no-background.png"
               alt="Ayush Bharti"
               fill
-              sizes="280px"
-              style={{ objectFit: 'contain', objectPosition: 'bottom center', transform: 'scale(1.1) translateY(10px)' }}
+              sizes="220px"
+              style={{ objectFit: 'cover', borderRadius: '50%' }}
               priority
             />
           </div>
