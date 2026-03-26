@@ -1684,6 +1684,14 @@ button {
   grid-column: 1 / -1;
 }
 
+.stats-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-sm);
+}
+
+/* ===== ACHIEVEMENTS & CONNECT ===== */
 .heatmap-container {
   overflow-x: auto;
   padding: 8px 0;
