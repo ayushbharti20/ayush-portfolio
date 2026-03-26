@@ -153,7 +153,7 @@ export default function AboutSection() {
           <h4>GitHub Stats</h4>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
-            src="https://github-readme-stats.vercel.app/api?username=ayushbharti20&theme=dark&hide_border=true&include_all_commits=true&show_icons=true&bg_color=11111b" 
+            src="https://github-readme-stats-eight-theta.vercel.app/api?username=ayushbharti20&theme=dark&hide_border=true&include_all_commits=true&show_icons=true&bg_color=11111b" 
             alt="GitHub Stats" 
             className="stats-image"
           />
