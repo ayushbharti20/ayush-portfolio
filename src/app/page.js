@@ -36,6 +36,7 @@ export default function Portfolio() {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [explorerOpen, setExplorerOpen] = useState(true);
   const [time, setTime] = useState('');
+  const [openMenu, setOpenMenu] = useState(null);
 
   useEffect(() => {
     setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
@@ -82,13 +83,47 @@ export default function Portfolio() {
         </div>
         <div className="titlebar__menu">
           {MENU_ITEMS.map(item => (
-            <button 
-              className="titlebar__menu-item" 
-              key={item.label}
-              onClick={() => handleFileClick(item.fileId)}
-            >
-              {item.label}
-            </button>
+            <div style={{ position: 'relative' }} key={item.label}>
+              <button 
+                className="titlebar__menu-item" 
+                onClick={(e) => {
+                  if (item.label === 'File') {
+                    e.stopPropagation();
+                    setOpenMenu(openMenu === 'File' ? null : 'File');
+                  } else {
+                    handleFileClick(item.fileId);
+                  }
+                }}
+              >
+                {item.label}
+              </button>
+              {item.label === 'File' && openMenu === 'File' && (
+                <>
+                  <div 
+                    style={{ position: 'fixed', inset: 0, zIndex: 999 }} 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setOpenMenu(null);
+                    }} 
+                  />
+                  <div className="titlebar__dropdown" style={{ zIndex: 1000 }}>
+                    {FILE_MAP.map(file => (
+                      <div 
+                        key={file.id} 
+                        className="titlebar__dropdown-item" 
+                        onClick={() => {
+                          handleFileClick(file.id);
+                          setOpenMenu(null);
+                        }}
+                      >
+                        <span className={`sidebar__file-icon ${file.iconClass}`}>{file.icon}</span>
+                        {file.label}
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
           ))}
         </div>
         <div className="titlebar__search">
@@ -242,7 +277,7 @@ export default function Portfolio() {
         <div className="statusbar__right">
           <span className="statusbar__item">{activeFileData?.language || 'Plain Text'}</span>
           <span className="statusbar__item">UTF-8</span>
-          <span className="statusbar__item">💜 Ayush Bharti Dark</span>
+          <span className="statusbar__item">Ayush Bharti Dark</span>
           <span className="statusbar__item" style={{ opacity: 0.6 }}>
             {time}
           </span>
