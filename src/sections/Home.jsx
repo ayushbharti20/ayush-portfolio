@@ -64,15 +64,14 @@ export default function HomeSection() {
           </div>
         </div>
 
-        {/* Right: profile photo */}
         <div className="hero__photo-wrap">
           <div className="hero__photo-ring">
             <Image
-              src="/Ayush_photo.png"
+              src="/Ayush-2-no-background.png"
               alt="Ayush Bharti"
               fill
-              sizes="220px"
-              style={{ objectFit: 'cover', borderRadius: '50%' }}
+              sizes="280px"
+              style={{ objectFit: 'contain', objectPosition: 'bottom center', transform: 'scale(1.1) translateY(10px)' }}
               priority
             />
           </div>
