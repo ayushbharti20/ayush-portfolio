@@ -8,7 +8,7 @@ const projects = [
     title: 'POS Tagging of Social Media Text',
     desc: 'Trained models to perform Part-Of-Speech tagging on noisy, unstructured social media text (tweets, captions, emojis, slang). Implemented HMM (~81%), CRF (~88%), BiLSTM (~82%), and Transformer (~95%) for POS sequence labeling.',
     tags: ['Python', 'PyTorch', 'Scikit-Learn', 'HuggingFace', 'Pandas'],
-    github: 'https://github.com/ayushbharti20',
+    github: 'https://github.com/ayushbharti20/POS-Tagging-on-Social-Media-Text',
     date: "Oct '25",
   },
   {
@@ -16,7 +16,7 @@ const projects = [
     title: 'Large-Scale Log Anomaly Detection',
     desc: 'Developed an unsupervised anomaly detection system for large-scale system logs. Parsed raw logs into structured templates using Drain3, applied Autoencoder, Isolation Forest, and Transformer-based reconstruction methods.',
     tags: ['Python', 'PyTorch', 'Scikit-Learn', 'Drain3', 'Seaborn'],
-    github: 'https://github.com/ayushbharti20',
+    github: 'https://github.com/ayushbharti20/Large-Scale-Log-Anomaly-Detection',
     date: "Oct '25",
   },
 ];

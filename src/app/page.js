@@ -1,6 +1,5 @@
 'use client';
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import HomeSection from '@/sections/Home';
 import AboutSection from '@/sections/About';
 import ProjectsSection from '@/sections/Projects';
@@ -9,7 +8,6 @@ import ExperienceSection from '@/sections/Experience';
 import EducationSection from '@/sections/Education';
 import CertificatesSection from '@/sections/Certificates';
 import ContactSection from '@/sections/Contact';
-import ReadmeSection from '@/sections/Readme';
 
 const FILE_MAP = [
   { id: 'home.tsx', label: 'home.tsx', icon: '⚛', iconClass: 'file-icon--tsx', language: 'TypeScript React', component: HomeSection },
@@ -20,7 +18,6 @@ const FILE_MAP = [
   { id: 'education.json', label: 'education.json', icon: '{ }', iconClass: 'file-icon--json', language: 'JSON', component: EducationSection },
   { id: 'certificates.yml', label: 'certificates.yml', icon: '📜', iconClass: 'file-icon--json', language: 'YAML', component: CertificatesSection },
   { id: 'contact.css', label: 'contact.css', icon: '#', iconClass: 'file-icon--css', language: 'CSS', component: ContactSection },
-  { id: 'README.md', label: 'README.md', icon: 'MD', iconClass: 'file-icon--md', language: 'Markdown', component: ReadmeSection },
 ];
 
 const MENU_ITEMS = [
@@ -28,7 +25,7 @@ const MENU_ITEMS = [
   { label: 'View', fileId: 'projects.js' },
   { label: 'Run', fileId: 'experience.ts' },
   { label: 'Terminal', fileId: 'skills.json' },
-  { label: 'Help', fileId: 'README.md' }
+  { label: 'About', fileId: 'about.html' }
 ];
 const CV_PATH = '/ayush_final_cv4.pdf';
 
@@ -38,6 +35,15 @@ export default function Portfolio() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [explorerOpen, setExplorerOpen] = useState(true);
+  const [time, setTime] = useState('');
+
+  useEffect(() => {
+    setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+    const interval = setInterval(() => {
+      setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
 
   const activeFileData = FILE_MAP.find(f => f.id === activeFile);
   const ActiveComponent = activeFileData?.component || HomeSection;
@@ -53,7 +59,7 @@ export default function Portfolio() {
   const handleTabClose = (e, fileId) => {
     e.stopPropagation();
     const newTabs = openTabs.filter(t => t !== fileId);
-    if (newTabs.length === 0) newTabs.push('README.md');
+    if (newTabs.length === 0) newTabs.push('about.html');
     setOpenTabs(newTabs);
     if (activeFile === fileId) setActiveFile(newTabs[newTabs.length - 1]);
   };
@@ -238,7 +244,7 @@ export default function Portfolio() {
           <span className="statusbar__item">UTF-8</span>
           <span className="statusbar__item">💜 Ayush Bharti Dark</span>
           <span className="statusbar__item" style={{ opacity: 0.6 }}>
-            {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            {time}
           </span>
         </div>
       </div>
